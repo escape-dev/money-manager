@@ -15,7 +15,7 @@ class Api::V1::SessionsController < ApplicationController
     if @user&.authenticate(session_params[:password])
       response_ok(AuthService.generate_token_pair(@user.id))
     else
-      response_error("Invalid email or password", :unprocessable_entity)
+      response_error("Invalid email or password", :unauthorized)
     end
   end
 
