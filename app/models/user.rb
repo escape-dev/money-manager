@@ -4,8 +4,8 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     uniqueness: { case_sensitive: false },
                     format: { with: URI::MailTo::EMAIL_REGEXP }
-                    
-  validates :full_name, presence: true, 
+
+  validates :name, presence: true, 
                         length: { maximum: 35 }, 
                         format: /\A[^0-9`!@#\$%\^&*+_=]+\z/
 

@@ -3,7 +3,7 @@ class Api::V1::SessionsController < ApplicationController
     @user = User.new(session_params)
 
     if @user.save 
-      response_ok(@user.as_json(only: [:id, :username, :name, :created_at]), :created)
+      response_ok(@user.as_json(only: [:id, :email, :name, :created_at]), :created)
     else
       response_error(@user.errors.full_messages.join(", "), :unprocessable_entity)
     end
