@@ -9,8 +9,8 @@ class AuthService
 
 def self.generate_token_pair(user_id)
     {
-      access_token:  build_token(user_id, ACCESS_TOKEN_EXPIRY,  "access",  ACCESS_TOKEN_SECRET),
-      refresh_token: build_token(user_id, REFRESH_TOKEN_EXPIRY, "refresh", REFRESH_TOKEN_SECRET)
+      access_token:  build_token(user_id, ACCESS_TOKEN_EXPIRY,  "access",  JWT_ACCESS_TOKEN),
+      refresh_token: build_token(user_id, REFRESH_TOKEN_EXPIRY, "refresh", JWT_REFRESH_TOKEN)
     }
   end
 
@@ -46,6 +46,10 @@ def self.generate_token_pair(user_id)
       token:  encode(payload, secret),
       exp_at: expiration
     }
+  end
+
+  def self.encode(payload, secret)
+    JWT.encode(payload, secret, ALGORITHM)
   end
 
   def self.decode(raw_token, secret, expected_type: nil)
