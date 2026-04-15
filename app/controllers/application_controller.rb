@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   BEARER_PATTERN = /\ABearer /i.freeze
 
-  def authenticate 
+  def authenticate_request! 
     payload = AuthService.decode_access_token(bearer_token)
     @current_user = User.find_by(id: payload["user_id"])
     

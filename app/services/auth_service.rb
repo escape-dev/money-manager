@@ -4,8 +4,8 @@ class AuthService
   JWT_ACCESS_TOKEN = ENV.fetch("JWT_ACCESS_TOKEN")
   JWT_REFRESH_TOKEN = ENV.fetch("JWT_REFRESH_TOKEN")
 
-  ACCESS_TOKEN_EXPIRY = 15.minutes.to_i
-  REFRESH_TOKEN_EXPIRY = 7.days.to_i
+  ACCESS_TOKEN_EXPIRY = 15.minutes.from_now.to_i
+  REFRESH_TOKEN_EXPIRY = 7.days.from_now.to_i
 
 def self.generate_token_pair(user_id)
     {
