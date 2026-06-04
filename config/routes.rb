@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :users, only: %i[] do
         get :me, on: :collection
       end
+
+      resources :categories, only: %i[ index create ]
     end
   end
 end

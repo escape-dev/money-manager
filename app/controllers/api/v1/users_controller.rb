@@ -4,5 +4,4 @@ class Api::V1::UsersController < ApplicationController
   def me 
     response_ok(@current_user)
   end
-
 end

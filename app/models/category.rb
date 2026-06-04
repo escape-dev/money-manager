@@ -9,4 +9,7 @@ class Category < ApplicationRecord
                    format: /[^0-9`!@#\$%\^&*+_=]+/,
                    uniqueness: { scope: :user_id }
 
+  def as_json(*)
+    super(only: [:id, :name]).merge(icon: icon.url)
+  end
 end
