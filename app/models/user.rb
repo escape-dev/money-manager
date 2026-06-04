@@ -6,9 +6,11 @@ class User < ApplicationRecord
                     format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :name, presence: true, 
-                        length: { maximum: 35 }, 
-                        format: /\A[^0-9`!@#\$%\^&*+_=]+\z/
+                   length: { maximum: 35 }, 
+                   format: /\A[^0-9`!@#\$%\^&*+_=]+\z/
 
   validates :password, length: { minimum: 8 }, if: -> { new_record? || password.present? }
 
+  has_many :categories, dependent: :destroy
+  
 end
