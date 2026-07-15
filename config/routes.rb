@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         get :me, on: :collection
       end
 
-      resources :categories, only: %i[ index create show ]
+      resources :categories
     end
   end
 end

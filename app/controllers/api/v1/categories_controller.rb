@@ -1,6 +1,6 @@
 class Api::V1::CategoriesController < ApplicationController
   before_action :authenticate_request!
-  before_action :set_category, only: %i[ show ]
+  before_action :set_category, only: %i[ show update destroy ]
   
   def index
     @categories = Category.where(user_id: @current_user.id)
@@ -20,6 +20,20 @@ class Api::V1::CategoriesController < ApplicationController
 
   def show 
     response_ok(@category, :ok)
+  end
+
+  def update 
+    if @category.update(category_params)
+      response_ok(@category, :ok)
+    else
+      response_error(@category.errors.full_messages.join(", "), :unprocessable_entity)
+    end
+  end 
+
+  def destroy
+    @category.destroy
+
+    response_ok({message: "Category deleted successfully"}, :ok)
   end
 
   private 
